@@ -19,10 +19,17 @@
     <!-- Database configurations -->
     <property name="databaseSchemaUpdate" value="true" />
     <property name="databaseType" value="mysql"></property>
+
     <property name="processEngineLifecycleListener" ref="myProcessEngineLifecycleListerner"></property>
     <property name="eventListeners">
       <list>
         <ref bean="myActivitiEventListener"></ref>
+      </list>
+    </property>
+
+    <property name="configurators">
+      <list>
+        <ref bean="processEngineConfigurationByConfigWay"></ref>
       </list>
     </property>
     <!--&lt;!&ndash; job executor configurations &ndash;&gt;
@@ -59,6 +66,11 @@
 
   <bean id="myActivitiEventListener" class="imporven.activiti.Rudiments.core.MyActivitiEventListener">
   </bean>
+
+  <bean id="processEngineConfigurationByConfigWay" class="imporven.activiti.Rudiments.core.ProcessEngineConfigurationByConfigWay">
+  </bean>
+
+
 
   <bean id="asyncExecutor" class="org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor">
     <property name="defaultAsyncJobAcquireWaitTimeInMillis" value="1000" />
