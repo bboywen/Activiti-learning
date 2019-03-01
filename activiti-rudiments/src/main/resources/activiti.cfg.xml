@@ -18,7 +18,7 @@
     <property name="dataSource" ref="druidDataSource"></property>
     <!-- Database configurations -->
     <property name="databaseSchemaUpdate" value="true" />
-
+    <property name="databaseType" value="mysql"></property>
 
     <!--&lt;!&ndash; job executor configurations &ndash;&gt;
     <property name="asyncExecutor" ref="asyncExecutor" />
