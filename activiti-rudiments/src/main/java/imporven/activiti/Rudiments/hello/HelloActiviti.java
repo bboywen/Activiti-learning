@@ -48,6 +48,8 @@ public class HelloActiviti {
         //任务管理服务
         TaskService taskService = processEngines.getTaskService();
         System.out.println("===taskService : " +  taskService + "===");
+
+        processEngines.close();
     }
 
 }
