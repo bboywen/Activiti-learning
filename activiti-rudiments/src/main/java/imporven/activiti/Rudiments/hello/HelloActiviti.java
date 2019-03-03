@@ -1,7 +1,6 @@
 package imporven.activiti.Rudiments.hello;
 
 import org.activiti.engine.*;
-import org.activiti.form.api.FormRepositoryService;
 import org.activiti.form.api.FormService;
 
 /**
@@ -49,6 +48,8 @@ public class HelloActiviti {
         //任务管理服务
         TaskService taskService = processEngines.getTaskService();
         System.out.println("===taskService : " +  taskService + "===");
+
+        processEngines.close();
     }
 
 }
