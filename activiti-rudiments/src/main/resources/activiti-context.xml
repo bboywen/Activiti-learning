@@ -24,6 +24,15 @@
     <property name="databaseType" value="mysql"></property>
     <property name="transactionManager" ref="transactionManager"></property>
 
+    <property name="deploymentResources">
+      <list>
+        <value>classpath:diagrame/leave.bpmn</value>
+      </list>
+    </property>
+    
+    <property name="deploymentMode" value="default"></property>
+
+
     
     <property name="enableProcessDefinitionInfoCache" value="true" />
   </bean>
