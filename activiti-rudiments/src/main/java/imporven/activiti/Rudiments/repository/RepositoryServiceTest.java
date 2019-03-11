@@ -10,6 +10,7 @@ import org.activiti.engine.impl.util.IoUtil;
 import org.activiti.engine.impl.util.io.InputStreamSource;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.DeploymentQuery;
+import org.activiti.engine.repository.Model;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class RepositoryServiceTest {
     RepositoryService repositoryService;
 
     @Before
-    public void initProcess(){
+    public void initProcess() {
         processEngine = ProcessEngines.getProcessEngine("spring");
         repositoryService = processEngine.getRepositoryService();
     }
@@ -36,7 +37,7 @@ public class RepositoryServiceTest {
      * 通过classpath方式来部署流程
      */
     @Test
-    public void createRepositoryByClasspathTest(){
+    public void createRepositoryByClasspathTest() {
         Deployment deploy = repositoryService.createDeployment()
                 .enableDuplicateFiltering()  //启用去重
                 .addClasspathResource("diagrame/leave.bpmn")
@@ -58,7 +59,7 @@ public class RepositoryServiceTest {
      *
      */
     @Test
-    public void queryTest(){
+    public void queryTest() {
         //部署查询
         DeploymentQuery deploymentQuery = repositoryService.createDeploymentQuery();
         Deployment hr = deploymentQuery.deploymentCategory("HR")
@@ -77,8 +78,13 @@ public class RepositoryServiceTest {
         System.out.println(processDefinition);
 
         //模型查询
-//        repositoryService.createModelQuery();
-        //TODO 模型部署后查询
+        Model model = repositoryService.createModelQuery()
+                .modelTenantId("A")
+                .modelCategory("HR")
+                .modelKey("leave")
+                .latestVersion()
+                .singleResult();
+        System.out.println(model);
     }
 
     @Test
@@ -105,7 +111,7 @@ public class RepositoryServiceTest {
     public void createRepositoryByBytesTest() {
 
         Deployment deploy = repositoryService.createDeployment()
-                .addBytes("leave", IoUtil.readInputStream(RepositoryServiceTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn"),"leave"))
+                .addBytes("leave", IoUtil.readInputStream(RepositoryServiceTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn"), "leave"))
                 .name("请假申请")
                 .key("leave")
                 .tenantId("A")
@@ -151,7 +157,7 @@ public class RepositoryServiceTest {
      */
     public void createRepositoryByBpmnModelTest() throws FileNotFoundException {
         BpmnXMLConverter bpmnXMLConverter = new BpmnXMLConverter();
-        BpmnModel bpmnModel =  bpmnXMLConverter.convertToBpmnModel(new InputStreamSource(RepositoryServiceTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn")), true, false, "UTF-8");
+        BpmnModel bpmnModel = bpmnXMLConverter.convertToBpmnModel(new InputStreamSource(RepositoryServiceTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn")), true, false, "UTF-8");
 
         Deployment deploy = repositoryService.createDeployment()
                 .addBpmnModel("leave", bpmnModel)
