@@ -1,6 +1,5 @@
 package imporven.activiti.Rudiments.repository;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.activiti.bpmn.converter.BpmnXMLConverter;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.ProcessEngine;
@@ -10,19 +9,15 @@ import org.activiti.engine.impl.util.IoUtil;
 import org.activiti.engine.impl.util.io.InputStreamSource;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.DeploymentQuery;
-import org.activiti.engine.repository.Model;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.function.Consumer;
+import java.util.List;
 import java.util.zip.ZipInputStream;
 
-public class RepositoryServiceTest {
+public class RepositoryServiceDeploymentTest {
 
     ProcessEngine processEngine;
     RepositoryService repositoryService;
@@ -77,14 +72,11 @@ public class RepositoryServiceTest {
                 .singleResult();
         System.out.println(processDefinition);
 
-        //模型查询
-        Model model = repositoryService.createModelQuery()
-                .modelTenantId("A")
-                .modelCategory("HR")
-                .modelKey("leave")
-                .latestVersion()
-                .singleResult();
-        System.out.println(model);
+
+        List<Deployment> deployments = repositoryService.createNativeDeploymentQuery()
+                .sql("SELECT * FROM ACT_RE_DEPLOYMENT")
+                .list();
+        System.out.println(deployments.size());
     }
 
     @Test
@@ -111,7 +103,7 @@ public class RepositoryServiceTest {
     public void createRepositoryByBytesTest() {
 
         Deployment deploy = repositoryService.createDeployment()
-                .addBytes("leave", IoUtil.readInputStream(RepositoryServiceTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn"), "leave"))
+                .addBytes("leave", IoUtil.readInputStream(RepositoryServiceDeploymentTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn"), "leave"))
                 .name("请假申请")
                 .key("leave")
                 .tenantId("A")
@@ -127,7 +119,7 @@ public class RepositoryServiceTest {
      */
     public void createRepositoryByInputStreamTest() throws FileNotFoundException {
         Deployment deploy = repositoryService.createDeployment()
-                .addInputStream("leave", RepositoryServiceTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn"))
+                .addInputStream("leave", RepositoryServiceDeploymentTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn"))
                 .name("请假申请")
                 .key("leave")
                 .tenantId("A")
@@ -142,7 +134,7 @@ public class RepositoryServiceTest {
      */
     public void createRepositoryByZipInputStreamTest() throws FileNotFoundException {
         Deployment deploy = repositoryService.createDeployment()
-                .addZipInputStream(new ZipInputStream(RepositoryServiceTest.class.getClassLoader().getResourceAsStream("diagrame/leave.zip")))
+                .addZipInputStream(new ZipInputStream(RepositoryServiceDeploymentTest.class.getClassLoader().getResourceAsStream("diagrame/leave.zip")))
                 .name("请假申请")
                 .key("leave")
                 .tenantId("A")
@@ -157,7 +149,7 @@ public class RepositoryServiceTest {
      */
     public void createRepositoryByBpmnModelTest() throws FileNotFoundException {
         BpmnXMLConverter bpmnXMLConverter = new BpmnXMLConverter();
-        BpmnModel bpmnModel = bpmnXMLConverter.convertToBpmnModel(new InputStreamSource(RepositoryServiceTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn")), true, false, "UTF-8");
+        BpmnModel bpmnModel = bpmnXMLConverter.convertToBpmnModel(new InputStreamSource(RepositoryServiceDeploymentTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn")), true, false, "UTF-8");
 
         Deployment deploy = repositoryService.createDeployment()
                 .addBpmnModel("leave", bpmnModel)
