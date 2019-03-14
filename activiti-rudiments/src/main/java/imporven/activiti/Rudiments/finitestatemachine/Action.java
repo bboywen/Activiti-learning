@@ -3,23 +3,29 @@ package imporven.activiti.Rudiments.finitestatemachine;
 /**
  * @author imporven
  * @version 1.0.0
- * @date 2019-3-13 14:37
- * 有限状态机  活动或动作
+ * @date 2019-3-14 10:17
  */
 public class Action {
 
-  private String name;
-  public Action(String name){
-      this.name = name;
-  }
+    private String name;
+    public Action(String name){
+        this.name = name;
+    }
+    public void onBefore() {
+        System.out.println("执行"+name+"行为前事件");
+    }
 
-    void enter(){
-        System.out.println("================进入"+name+"状态=================");
-    };
-    void execute(){
+    public void onAfter() {
+        System.out.println("执行"+name+"行为后事件");
 
-    };
-    void leave(){
-        System.out.println("================离开"+name+"状态=================");
-    };
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

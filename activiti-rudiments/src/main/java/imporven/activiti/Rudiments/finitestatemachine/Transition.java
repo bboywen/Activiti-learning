@@ -3,37 +3,31 @@ package imporven.activiti.Rudiments.finitestatemachine;
 /**
  * @author imporven
  * @version 1.0.0
- * @date 2019-3-13 14:20
- * 有限状态机 转移
+ * @date 2019-3-14 10:17
  */
-public class Transition {
+public class Transition{
 
     private State from;
     private State to;
-
-    public Transition(State form, State to){
-        this.from = form;
+    public Transition(State from, State to){
+        this.from = from;
         this.to = to;
     }
-
-    public Boolean meetCondition(){
-        //TODO
-        return true;
-    }
-
-    void onBefore(){
-//        System.out.println("================执行"+name+"行为前操作=================");
-    };
-    void onAfter(){
-
-//        System.out.println("================执行"+name+"行为后=================");
-    };
 
     public State getFrom() {
         return from;
     }
 
+    public void setFrom(State from) {
+        this.from = from;
+    }
+
     public State getTo() {
         return to;
     }
+
+    public void setTo(State to) {
+        this.to = to;
+    }
+
 }
