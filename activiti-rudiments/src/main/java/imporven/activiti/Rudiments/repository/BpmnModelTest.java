@@ -168,7 +168,7 @@ public class BpmnModelTest {
         System.out.println(new String(bytes));
 
         Deployment deploy = repositoryService.createDeployment()
-                .addBytes("test", bytes)
+                .addBytes("test.bpmn", bytes)
                 .key("test")
                 .name("BPMNModel部署测试")
                 .deploy();
