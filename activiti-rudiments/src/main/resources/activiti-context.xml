@@ -24,16 +24,19 @@
     <property name="databaseType" value="mysql"></property>
     <property name="transactionManager" ref="transactionManager"></property>
 
-    <property name="deploymentResources">
-      <list>
-        <value>classpath:diagrame/leave.bpmn</value>
-      </list>
+    <!--<property name="idGenerator" ref="strongUuidGenerator"></property>-->
+    <property name="idGenerator">
+      <bean class="imporven.activiti.Rudiments.core.IDGenerator"></bean>
     </property>
-    
-    <property name="deploymentMode" value="default"></property>
 
+    <!--<property name="deploymentResources">-->
+      <!--<list>-->
+        <!--<value>classpath:diagrame/leave.bpmn</value>-->
+      <!--</list>-->
+    <!--</property>-->
+    <!---->
+    <!--<property name="deploymentMode" value="default"></property>-->
 
-    
     <property name="enableProcessDefinitionInfoCache" value="true" />
   </bean>
   
@@ -47,6 +50,6 @@
   <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
   <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
 
-
+  <!--<bean id="strongUuidGenerator" class="org.activiti.engine.impl.persistence.StrongUuidGenerator"></bean>-->
 
 </beans>
