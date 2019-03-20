@@ -86,7 +86,7 @@ public class RepositoryServiceDeploymentTest {
     public void createRepositoryByStringTest() {
 
         Deployment deploy = repositoryService.createDeployment()
-                .addString("leave", IoUtil.readFileAsString("diagrame/leave.bpmn"))
+                .addString("leave.bpmn", IoUtil.readFileAsString("diagrame/leave.bpmn"))
                 .name("请假申请")
                 .key("leave")
                 .tenantId("A")
@@ -103,7 +103,7 @@ public class RepositoryServiceDeploymentTest {
     public void createRepositoryByBytesTest() {
 
         Deployment deploy = repositoryService.createDeployment()
-                .addBytes("leave", IoUtil.readInputStream(RepositoryServiceDeploymentTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn"), "leave"))
+                .addBytes("leave.bpmn", IoUtil.readInputStream(RepositoryServiceDeploymentTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn"), "leave"))
                 .name("请假申请")
                 .key("leave")
                 .tenantId("A")
@@ -119,7 +119,7 @@ public class RepositoryServiceDeploymentTest {
      */
     public void createRepositoryByInputStreamTest() throws FileNotFoundException {
         Deployment deploy = repositoryService.createDeployment()
-                .addInputStream("leave", RepositoryServiceDeploymentTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn"))
+                .addInputStream("leave.bpmn", RepositoryServiceDeploymentTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn"))
                 .name("请假申请")
                 .key("leave")
                 .tenantId("A")
@@ -152,7 +152,7 @@ public class RepositoryServiceDeploymentTest {
         BpmnModel bpmnModel = bpmnXMLConverter.convertToBpmnModel(new InputStreamSource(RepositoryServiceDeploymentTest.class.getClassLoader().getResourceAsStream("diagrame/leave.bpmn")), true, false, "UTF-8");
 
         Deployment deploy = repositoryService.createDeployment()
-                .addBpmnModel("leave", bpmnModel)
+                .addBpmnModel("leave.bpmn", bpmnModel)
                 .name("请假申请")
                 .key("leave")
                 .tenantId("A")

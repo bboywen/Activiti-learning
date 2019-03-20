@@ -28,6 +28,10 @@
     <property name="idGenerator">
       <bean class="imporven.activiti.Rudiments.core.IDGenerator"></bean>
     </property>
+    
+    <property name="activityFontName" value="微软雅黑"></property>
+    <property name="labelFontName" value="微软雅黑"></property>
+    <property name="annotationFontName" value="微软雅黑"></property>
 
     <!--<property name="deploymentResources">-->
       <!--<list>-->
