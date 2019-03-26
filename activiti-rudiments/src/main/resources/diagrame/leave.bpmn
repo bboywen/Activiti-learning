@@ -32,28 +32,28 @@
       <bpmndi:BPMNShape bpmnElement="Task_2" id="Shape-Task_2">
         <dc:Bounds height="80.0" width="100.0" x="409.0" y="80.0"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="80.0" width="100.0" x="0.0" y="0.0"/>
+          <dc:Bounds height="80.0" width="40.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="SequenceFlow_1w2ybbt" id="BPMNEdge_SequenceFlow_1w2ybbt" sourceElement="Task_2" targetElement="EndEvent_1">
         <di:waypoint x="509.0" y="120.0"/>
         <di:waypoint x="559.0" y="118.0"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+          <dc:Bounds height="130" width="560" x="520" y="130"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="SequenceFlow_0vm9ytd" id="BPMNEdge_SequenceFlow_0vm9ytd" sourceElement="StartEvent_1" targetElement="Task_1">
         <di:waypoint x="205.0" y="118.0"/>
         <di:waypoint x="259.0" y="120.0"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+          <dc:Bounds height="130" width="260" x="220" y="130"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="SequenceFlow_101azps" id="BPMNEdge_SequenceFlow_101azps" sourceElement="Task_1" targetElement="Task_2">
         <di:waypoint x="359.0" y="120.0"/>
         <di:waypoint x="409.0" y="120.0"/>
         <bpmndi:BPMNLabel>
-          <dc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+          <dc:Bounds height="130" width="410" x="370" y="130"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
